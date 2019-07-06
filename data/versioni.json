@@ -1,0 +1,105 @@
+{
+    "versioni": [{
+        "nome": "Classico",
+        "valore": "classico",
+        "ambientazioni": [
+            {
+                "nome": "Prima edizione",
+                "valore": "prima_edizione",
+                "giocatori": {
+                    "minimo": 3,
+                    "massimo": 6
+                },
+                "sospettati": [],
+                "stanze": [],
+                "armi": []
+            }, {
+                "nome": "Seconda edizione",
+                "valore": "seconda_edizione",
+                "giocatori": {
+                    "minimo": 2,
+                    "massimo": 6
+                },
+                "sospettati": [],
+                "stanze": [],
+                "armi": []
+            }
+        ]
+    }, {
+        "nome": "Game of Thrones",
+        "valore": "game_of_thrones",
+        "ambientazioni": [
+            {
+                "nome": "Fortezza Rossa",
+                "valore": "fortezza_rossa",
+                "giocatori": {
+                    "minimo": 2,
+                    "massimo": 6
+                },
+                "sospettati": [
+                    "Cersei Lannister",
+                    "Tyrion Lannister",
+                    "Jaime Lannister",
+                    "Margaery Tyrell",
+                    "Petyr Baelish",
+                    "Sansa Stark"
+                ],
+                "stanze": [
+                    "Sala del Concilio Ristretto",
+                    "Laboratorio di Qyburn",
+                    "Torre del Primo Cavaliere",
+                    "Stanze della Guardia Reale",
+                    "Celle della prigione",
+                    "Giardini",
+                    "Chiostro",
+                    "Stanze di Re Tommen",
+                    "Laboratorio del Gran Maestro Pycelle",
+                    "Stanze di Cersei",
+                    "Cortile di allenamento"
+                ],
+                "armi": [
+                    "Fiala di veleno",
+                    "Ascia da guerra",
+                    "Arakh",
+                    "Uomo senza volto",
+                    "Balestra",
+                    "Daga dell'Assassino"
+                ]
+            }, {
+                "nome": "Meereen",
+                "valore": "meereen",
+                "giocatori": {
+                    "minimo": 2,
+                    "massimo": 6
+                },
+                "sospettati": [
+                    "Daenerys Targaryen",
+                    "Hizdar zo Loraq",
+                    "Jorah Mormont",
+                    "Grey Worm",
+                    "Missandei",
+                    "Daario Naharis"
+                ],
+                "stanze": [
+                    "Bordello",
+                    "Piramide dei Grandi Maestri",
+                    "Quartieri degli Schiavi",
+                    "Tempio delle Grazie",
+                    "Catacombe del drago",
+                    "Tunnel",
+                    "Gran Bazar",
+                    "Porte della Città",
+                    "Fossa di Daznak"
+                ],
+                "armi": [
+                    "Fiala di veleno",
+                    "Ascia da guerra",
+                    "Arakh",
+                    "Uomo senza volto",
+                    "Balestra",
+                    "Daga dell'Assassino"
+                ]
+            }
+        ]
+    }]
+}

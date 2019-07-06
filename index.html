@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+
+        <title>Hackluedo</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+        <!-- FONTS & ICONS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- STYLES -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="/styles/main.css">
+        <link rel="stylesheet" href="/styles/partita.css">
+
+        <!-- WEB APP -->
+        <link rel="manifest" href="/data/manifest.json">
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" type="image/png" sizes="192x192" href="/images/icona192.png">
+        <meta name="theme-color" content="#282c34">
+
+    </head>
+    <body>
+
+        <!-- HEADER -->
+        <header class="w3-container w3-center">
+            <h1 class="w3-xxlarge">Hackluedo</h1>
+        </header>
+
+        <!-- RESPONSIVE -->
+        <div class="w3-third responsive"></div>
+        <div class="w3-third">
+
+            <!-- NUOVA PARTITA -->
+            <div id="nuova" class="w3-container w3-center">
+                <h1 class="w3-xlarge">Nuova partita</h1>
+            </div>
+
+            <!-- CONTINUA PARTITA -->
+            <div id="continua"  class="w3-container w3-center w3-text-grey">
+                <h1 class="w3-xlarge">Continua partita</h1>
+            </div>
+
+            <!-- CONFERMA -->
+            <div class="w3-modal">
+                <div class="w3-modal-content">
+
+                    <!-- HEADER -->
+                    <header class="w3-container w3-center">
+                        <h1 class="w3-xlarge">Sei sicuro?</h1>
+                    </header>
+
+                    <!-- CONTENUTO -->
+                    <div class="w3-container">
+                        <span id="chiudi" class="w3-button w3-display-topright">
+                            <i class="material-icons">close</i>
+                        </span>
+                        <p>C'&egrave; gi&agrave; una partita in corso, iniziandone una nuova perderai i progressi</p>
+                        <button id="conferma" class="w3-btn w3-card w3-round w3-right">Conferma</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- SCRIPTS -->
+        <script src="/scripts/partita.js"></script>
+
+    </body>
+</html>

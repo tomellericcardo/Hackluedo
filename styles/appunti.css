@@ -1,0 +1,45 @@
+/* APPUNTI */
+#appunti {
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 100px;
+}
+
+.giocatore {
+    margin: 0;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+}
+
+.esclusa td:first-child {
+    color: var(--colore-campi);
+}
+
+th {
+    padding: 15px 0 5px 10px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.carta {
+    padding: 5px;
+    border: 1px solid var(--colore-campi);
+    border-right: 1px solid var(--colore-testo);
+}
+
+.cella {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--colore-testo);
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* AGGIUNGI */
+#ipotesi, #reazioni {
+    display: none;
+}

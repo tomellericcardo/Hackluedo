@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+
+        <title>Hackluedo</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+        <!-- FONTS & ICONS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- STYLES -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="/styles/main.css">
+        <link rel="stylesheet" href="/styles/appunti.css">
+
+        <!-- WEB APP -->
+        <link rel="manifest" href="/data/manifest.json">
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" type="image/png" sizes="192x192" href="/images/icona192.png">
+        <meta name="theme-color" content="#282c34">
+
+    </head>
+    <body>
+
+        <!-- HEADER -->
+        <header class="w3-container w3-center">
+            <h1 class="w3-xxlarge">Appunti</h1>
+        </header>
+
+        <!-- RESPONSIVE -->
+        <div class="w3-third responsive"></div>
+        <div class="w3-third">
+
+            <!-- APPUNTI -->
+            <div id="appunti">
+                <table></table>
+            </div>
+
+            <!-- AGGIUNGI -->
+            <button id="aggiungi" class="w3-btn w3-card w3-xlarge w3-circle fab">
+                <i class="material-icons">edit</i>
+            </button>
+
+            <!-- AGGIUNGI -->
+            <div class="w3-modal">
+                <div class="w3-modal-content">
+
+                    <!-- HEADER -->
+                    <header class="w3-container w3-center">
+                        <h1 class="w3-xlarge">Aggiungi appunti</h1>
+                    </header>
+
+                    <!-- CONTENUTO -->
+                    <div class="w3-container">
+                        <span id="chiudi" class="w3-button w3-display-topright">
+                            <i class="material-icons">close</i>
+                        </span>
+
+                        <!-- TIPO -->
+                        <select id="tipo" class="w3-select w3-margin-bottom">
+                            <option value="certezza">Certezza</option>
+                            <option value="ipotesi">Ipotesi</option>
+                        </select>
+
+                        <!-- GIOCATORE -->
+                        <select id="giocatore" class="w3-select">
+                            <option value="">Seleziona il giocatore</option>
+                        </select>
+
+                        <!-- CERTEZZA -->
+                        <div id="certezza">
+                            <select id="possiede" class="w3-select">
+                                <option value="non_possiede">Non possiede</option>
+                                <option value="possiede">Possiede</option>
+                            </select>
+                            <select id="carta" class="w3-select">
+                                <option value="">Seleziona la carta</option>
+                            </select>
+                            <button id="conferma_certezza" class="w3-btn w3-card w3-round w3-margin-top w3-right">Conferma</button>
+                        </div>
+
+                        <!-- IPOTESI -->
+                        <div id="ipotesi">
+                            <select id="sospettato" class="w3-select">
+                                <option value="">Seleziona il sospettato</option>
+                            </select>
+                            <select id="stanza" class="w3-select">
+                                <option value="">Seleziona la stanza</option>
+                            </select>
+                            <select id="arma" class="w3-select">
+                                <option value="">Seleziona l'arma</option>
+                            </select>
+                            <button id="conferma_ipotesi" class="w3-btn w3-card w3-round w3-margin-top w3-right">Continua</button>
+                        </div>
+
+                        <!-- REAZIONI -->
+                        <div id="reazioni">
+                            <button id="conferma_reazioni" class="w3-btn w3-card w3-round w3-margin-top w3-right">Conferma</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- SCRIPTS -->
+        <script src="/scripts/appunti.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+
+        <title>Hackluedo</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+        <!-- FONTS & ICONS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- STYLES -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="/styles/main.css">
+
+        <!-- WEB APP -->
+        <link rel="manifest" href="/data/manifest.json">
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" type="image/png" sizes="192x192" href="/images/icona192.png">
+        <meta name="theme-color" content="#282c34">
+
+    </head>
+    <body>
+
+        <!-- HEADER -->
+        <header class="w3-container w3-center">
+            <h1 class="w3-xxlarge">Preparazione</h1>
+        </header>
+
+        <!-- RESPONSIVE -->
+        <div class="w3-third responsive"></div>
+        <div class="w3-third">
+
+            <!-- VERSIONE e AMBIENTAZIONE -->
+            <div class="w3-container">
+                <h1 class="w3-xlarge">Versione e ambientazione</h1>
+
+                <!-- VERSIONE -->
+                <select id="versione" class="w3-input">
+                    <option value="">Scegli versione</option>
+                </select>
+
+                <!-- AMBIENTAZIONE -->
+                <select id="ambientazione" class="w3-input" disabled>
+                    <option value="">Scegli ambientazione</option>
+                </select>
+
+            </div>
+
+            <!-- GIOCATORI -->
+            <div class="w3-container w3-margin-top">
+                <h1 class="w3-xlarge">Giocatori</h1>
+
+                <!-- NUMERO -->
+                <input type="number" id="numero" class="w3-input" min="2" max="6" value="2">
+
+                <!-- NOMI -->
+                <div id="nomi">
+                    <input type="text" id="nome_0" class="w3-input" placeholder="Nome giocatore 1">
+                    <input type="text" id="nome_1" class="w3-input" placeholder="Nome giocatore 2">
+                </div>
+
+                <!-- CONFERMA -->
+                <button id="conferma" class="w3-btn w3-card w3-round w3-margin-top w3-right">Inizia partita</button>
+
+            </div>
+
+        </div>
+
+        <!-- SCRIPTS -->
+        <script src="/scripts/setup.js"></script>
+
+    </body>
+</html>

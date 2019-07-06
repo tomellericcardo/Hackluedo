@@ -1,0 +1,22 @@
+{
+    "name": "Hackluedo",
+    "short_name": "Hackluedo",
+    "description": "Pratici appunti per il gioco del mistero",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#2c313c",
+    "theme_color": "#282c34",
+    "icons": [
+        {
+            "src": "\/images\/icona192.png",
+            "sizes": "192x192",
+            "type": "image\/png"
+        },
+        {
+            "src": "\/images\/icona512.png",
+            "sizes": "512x512",
+            "type": "image\/png"
+        }
+    ]
+}
