@@ -366,7 +366,7 @@ var appunti = {
                 label.for = giocatore_corrente + '_mostra';
                 label.classList.add('w3-label');
                 label.classList.add('w3-margin-top');
-                label.innerHTML = '<br>' + giocatore_corrente;
+                label.innerHTML = giocatore_corrente;
                 appunti.elemento_reazioni_giocatori.appendChild(label);
                 var select = document.createElement('select');
                 select.id = giocatore_corrente + '_mostra';
@@ -406,6 +406,7 @@ var appunti = {
                 option.innerHTML = arma;
                 select.appendChild(option);
                 appunti.elemento_reazioni_giocatori.appendChild(select);
+                appunti.elemento_reazioni_giocatori.innerHTML += '<br>';
                 appunti.init_mostra(giocatore_corrente);
             }
         }
