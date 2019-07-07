@@ -359,13 +359,13 @@ var appunti = {
             var giocatore_corrente = appunti.giocatori[i];
             if (giocatore_corrente != giocatore) {
                 var label = document.createElement('label');
-                label.for = giocatore + '_mostra';
+                label.for = giocatore_corrente + '_mostra';
                 label.classList.add('w3-label');
-                label.innerHTML = giocatore;
+                label.innerHTML = giocatore_corrente;
                 appunti.elemento_reazioni_giocatori.appendChild(label);
                 var select = document.createElement('select');
-                select.id = giocatore + '_mostra';
-                select.name = giocatore + '_mostra';
+                select.id = giocatore_corrente + '_mostra';
+                select.name = giocatore_corrente + '_mostra';
                 select.classList.add('w3-select');
                 var option = document.createElement('option');
                 option.value = '';
@@ -381,7 +381,7 @@ var appunti = {
                 select.appendChild(option);
                 appunti.elemento_reazioni_giocatori.appendChild(select);
                 select = document.createElement('select');
-                select.id = giocatore + '_mostra_carta';
+                select.id = giocatore_corrente + '_mostra_carta';
                 select.classList.add('w3-select');
                 select.classList.add('w3-hide');
                 option = document.createElement('option');
@@ -401,7 +401,7 @@ var appunti = {
                 option.innerHTML = arma;
                 select.appendChild(option);
                 appunti.elemento_reazioni_giocatori.appendChild(select);
-                appunti.init_mostra(giocatore);
+                appunti.init_mostra(giocatore_corrente);
             }
         }
     },
@@ -412,8 +412,8 @@ var appunti = {
         var elemento_mostra_carta = document.querySelector('#' + giocatore + '_mostra_carta');
         elemento_mostra.addEventListener('click', function() {
             if (elemento_mostra.value == 'mostra') {
-                elemento.elemento_mostra_carta.classList.remove('w3-hide');
-            } else elemento.elemento_mostra_carta.classList.add('w3-hide');
+                elemento_mostra_carta.classList.remove('w3-hide');
+            } else elemento_mostra_carta.classList.add('w3-hide');
         });
     },
 
