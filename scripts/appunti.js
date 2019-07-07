@@ -359,7 +359,7 @@ var appunti = {
 
     // Renderizzazione reazioni
     render_reazioni: function(giocatore, sospettato, stanza, arma) {
-        for (var i = 0; i < appunti.giocatori.length; i++) {
+        for (var i = 1; i < appunti.giocatori.length; i++) {
             var giocatore_corrente = appunti.giocatori[i];
             if (giocatore_corrente != giocatore && giocatore_corrente != 'Tavolo') {
                 var label = document.createElement('label');
@@ -415,7 +415,7 @@ var appunti = {
     init_mostra: function(giocatore) {
         var elemento_mostra = document.querySelector('#' + giocatore + '_mostra');
         var elemento_mostra_carta = document.querySelector('#' + giocatore + '_mostra_carta');
-        elemento_mostra.addEventListener('click', function() {
+        elemento_mostra.addEventListener('change', function() {
             if (elemento_mostra.value == 'mostra') {
                 elemento_mostra_carta.classList.remove('w3-hide');
             } else elemento_mostra_carta.classList.add('w3-hide');

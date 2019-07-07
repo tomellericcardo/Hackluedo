@@ -75,7 +75,8 @@ var setup = {
                 elemento_nome.type = 'text';
                 elemento_nome.id = 'nome_' + i;
                 elemento_nome.className = 'w3-input';
-                elemento_nome.placeholder = 'Nome giocatore ' + (i + 1);
+                if (i == 0) elemento_nome.placeholder = 'Il tuo nome';
+                else elemento_nome.placeholder = 'Nome giocatore ' + (i + 1);
                 setup.elemento_nomi.appendChild(elemento_nome);
             }
         });
