@@ -246,8 +246,6 @@ var appunti = {
     // Inizializzazione tipologia
     init_tipo: function() {
         appunti.elemento_tipo.addEventListener('change', function() {
-            appunti.elemento_tipo.style.display = 'block';
-            appunti.elemento_giocatore.style.display = 'block';
             appunti.elemento_reazioni.style.display = 'none';
             appunti.elemento_reazioni_giocatori.innerHTML = '';
             if (appunti.elemento_tipo.value == 'certezza') {
@@ -348,7 +346,7 @@ var appunti = {
             var sospettato = appunti.elemento_sospettato.value;
             var stanza = appunti.elemento_stanza.value;
             var arma = appunti.elemento_arma.value;
-            if (giocatore != '' && sospettato != '' && stanza != '' && arma != '') {
+            if (giocatore != '' && giocatore != 'Tavolo' && sospettato != '' && stanza != '' && arma != '') {
                 appunti.render_reazioni(giocatore, sospettato, stanza, arma);
                 appunti.elemento_certezza.style.display = 'none';
                 appunti.elemento_ipotesi.style.display = 'none';
@@ -368,7 +366,7 @@ var appunti = {
                 label.for = giocatore_corrente + '_mostra';
                 label.classList.add('w3-label');
                 label.classList.add('w3-margin-top');
-                label.innerHTML = giocatore_corrente;
+                label.innerHTML = '<br>' + giocatore_corrente;
                 appunti.elemento_reazioni_giocatori.appendChild(label);
                 var select = document.createElement('select');
                 select.id = giocatore_corrente + '_mostra';

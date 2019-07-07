@@ -40,6 +40,10 @@ th {
 }
 
 /* AGGIUNGI */
+.w3-modal-content {
+    margin-bottom: 40px;
+}
+
 #ipotesi, #reazioni {
     display: none;
 }
