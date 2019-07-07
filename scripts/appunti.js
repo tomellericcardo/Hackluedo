@@ -228,6 +228,8 @@ var appunti = {
     // Chiusura modal
     chiudi_modal: function() {
         appunti.elemento_modal.style.display = 'none';
+        appunti.elemento_tipo.style.display = 'block';
+        appunti.elemento_giocatore.style.display = 'block';
         appunti.elemento_tipo.value = 'certezza';
         appunti.elemento_certezza.style.display = 'block';
         appunti.elemento_ipotesi.style.display = 'none';
@@ -244,6 +246,8 @@ var appunti = {
     // Inizializzazione tipologia
     init_tipo: function() {
         appunti.elemento_tipo.addEventListener('change', function() {
+            appunti.elemento_tipo.style.display = 'block';
+            appunti.elemento_giocatore.style.display = 'block';
             appunti.elemento_reazioni.style.display = 'none';
             appunti.elemento_reazioni_giocatori.innerHTML = '';
             if (appunti.elemento_tipo.value == 'certezza') {
@@ -349,6 +353,8 @@ var appunti = {
                 appunti.elemento_certezza.style.display = 'none';
                 appunti.elemento_ipotesi.style.display = 'none';
                 appunti.elemento_reazioni.style.display = 'block';
+                appunti.elemento_tipo.style.display = 'none';
+                appunti.elemento_giocatore.style.display = 'none';
             }
         });
     },
@@ -357,10 +363,11 @@ var appunti = {
     render_reazioni: function(giocatore, sospettato, stanza, arma) {
         for (var i = 0; i < appunti.giocatori.length; i++) {
             var giocatore_corrente = appunti.giocatori[i];
-            if (giocatore_corrente != giocatore) {
+            if (giocatore_corrente != giocatore && giocatore_corrente != 'Tavolo') {
                 var label = document.createElement('label');
                 label.for = giocatore_corrente + '_mostra';
                 label.classList.add('w3-label');
+                label.classList.add('w3-margin-top');
                 label.innerHTML = giocatore_corrente;
                 appunti.elemento_reazioni_giocatori.appendChild(label);
                 var select = document.createElement('select');
@@ -426,7 +433,7 @@ var appunti = {
             var arma = appunti.elemento_arma.value;
             for (var i = 0; i < appunti.giocatori.length; i++) {
                 var giocatore_corrente = appunti.giocatori[i];
-                if (giocatore_corrente != giocatore) {
+                if (giocatore_corrente != giocatore && giocatore_corrente != 'Tavolo') {
                     var elemento_mostra = document.querySelector('#' + giocatore_corrente + '_mostra');
                     if (elemento_mostra.value == 'mostra') {
                         var elemento_mostra_carta = document.querySelector('#' + giocatore_corrente + '_mostra_carta');
