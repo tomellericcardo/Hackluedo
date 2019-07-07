@@ -40,6 +40,14 @@ button {
     color: var(--colore-testo)!important;
 }
 
+.menu {
+    background-color: var(--sfondo-primario)!important;
+    color: var(--colore-testo)!important;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+}
+
 .fab {
     position: fixed;
     right: 20px;
