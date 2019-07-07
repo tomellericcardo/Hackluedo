@@ -8,6 +8,8 @@ var appunti = {
         appunti.init_aggiungi();
         appunti.init_tipo();
         appunti.init_certezza();
+        appunti.init_ipotesi();
+        appunti.init_reazioni();
     },
 
     // Icone degli appunti
@@ -33,7 +35,10 @@ var appunti = {
         appunti.elemento_sospettato = document.querySelector('#sospettato');
         appunti.elemento_stanza = document.querySelector('#stanza');
         appunti.elemento_arma = document.querySelector('#arma');
+        appunti.elemento_conferma_ipotesi = document.querySelector('#conferma_ipotesi');
         appunti.elemento_reazioni = document.querySelector('#reazioni');
+        appunti.elemento_reazioni_giocatori = document.querySelector('#reazioni_giocatori');
+        appunti.elemento_conferma_reazioni = document.querySelector('#conferma_reazioni');
     },
 
     // Lettura ambientazione
@@ -57,6 +62,10 @@ var appunti = {
                     break;
                 }
             }
+            appunti.carte = [].concat(appunti.sospettati, appunti.stanze, appunti.armi);
+            appunti.n_carte = appunti.carte.length - 3;
+            appunti.giocatori = JSON.parse(localStorage.getItem('giocatori'));
+            appunti.carte_giocatore = {};
             appunti.render_appunti();
             appunti.render_campi();
             appunti.init_partita();
@@ -65,10 +74,6 @@ var appunti = {
 
     // Renderizzazione appunti
     render_appunti: function() {
-        appunti.carte = [].concat(appunti.sospettati, appunti.stanze, appunti.armi);
-        appunti.n_carte = appunti.carte.length - 3;
-        appunti.giocatori = JSON.parse(localStorage.getItem('giocatori'));
-        appunti.carte_giocatore = {};
         var n_giocatori = appunti.giocatori.length;
         var n_carte_tavolo = appunti.n_carte % n_giocatori;
         for (var i = 0; i < n_giocatori; i++) {
@@ -89,6 +94,11 @@ var appunti = {
             tr.appendChild(th);
         }
         appunti.elemento_tabella.appendChild(tr);
+        appunti.render_celle();
+    },
+
+    // Renderizzazione celle
+    render_celle: function() {
         var elementi = ['Sospettati', 'Stanze', 'Armi'];
         for (x = 0; x < elementi.length; x++) {
             var carte = appunti[elementi[x].toLowerCase()];
@@ -219,6 +229,10 @@ var appunti = {
     chiudi_modal: function() {
         appunti.elemento_modal.style.display = 'none';
         appunti.elemento_tipo.value = 'certezza';
+        appunti.elemento_certezza.style.display = 'block';
+        appunti.elemento_ipotesi.style.display = 'none';
+        appunti.elemento_reazioni.style.display = 'none';
+        appunti.elemento_reazioni_giocatori.innerHTML = '';
         appunti.elemento_giocatore.value = '';
         appunti.elemento_possiede.value = 'non_possiede';
         appunti.elemento_carta.value = '';
@@ -231,6 +245,7 @@ var appunti = {
     init_tipo: function() {
         appunti.elemento_tipo.addEventListener('change', function() {
             appunti.elemento_reazioni.style.display = 'none';
+            appunti.elemento_reazioni_giocatori.innerHTML = '';
             if (appunti.elemento_tipo.value == 'certezza') {
                 appunti.elemento_certezza.style.display = 'block';
                 appunti.elemento_ipotesi.style.display = 'none';
@@ -320,6 +335,115 @@ var appunti = {
                 }
             }
         }
+    },
+
+    // Inizializzazione ipotesi
+    init_ipotesi: function() {
+        appunti.elemento_conferma_ipotesi.addEventListener('click', function() {
+            var giocatore = appunti.elemento_giocatore.value;
+            var sospettato = appunti.elemento_sospettato.value;
+            var stanza = appunti.elemento_stanza.value;
+            var arma = appunti.elemento_arma.value;
+            if (giocatore != '' && sospettato != '' && stanza != '' && arma != '') {
+                appunti.render_reazioni(giocatore, sospettato, stanza, arma);
+                appunti.elemento_certezza.style.display = 'none';
+                appunti.elemento_ipotesi.style.display = 'none';
+                appunti.elemento_reazioni.style.display = 'block';
+            }
+        });
+    },
+
+    // Renderizzazione reazioni
+    render_reazioni: function(giocatore, sospettato, stanza, arma) {
+        for (var i = 0; i < appunti.giocatori.length; i++) {
+            var giocatore_corrente = appunti.giocatori[i];
+            if (giocatore_corrente != giocatore) {
+                var label = document.createElement('label');
+                label.for = giocatore + '_mostra';
+                label.classList.add('w3-label');
+                label.innerHTML = giocatore;
+                appunti.elemento_reazioni_giocatori.appendChild(label);
+                var select = document.createElement('select');
+                select.id = giocatore + '_mostra';
+                select.name = giocatore + '_mostra';
+                select.classList.add('w3-select');
+                var option = document.createElement('option');
+                option.value = '';
+                option.innerHTML = 'Seleziona azione';
+                select.appendChild(option);
+                option = document.createElement('option');
+                option.value = 'mostra';
+                option.innerHTML = 'Mostra una carta';
+                select.appendChild(option);
+                option = document.createElement('option');
+                option.value = 'non_mostra';
+                option.innerHTML = 'Non mostra niente';
+                select.appendChild(option);
+                appunti.elemento_reazioni_giocatori.appendChild(select);
+                select = document.createElement('select');
+                select.id = giocatore + '_mostra_carta';
+                select.classList.add('w3-select');
+                select.classList.add('w3-hide');
+                option = document.createElement('option');
+                option.value = '';
+                option.innerHTML = 'Seleziona carta mostrata';
+                select.appendChild(option);
+                option = document.createElement('option');
+                option.value = sospettato;
+                option.innerHTML = sospettato;
+                select.appendChild(option);
+                option = document.createElement('option');
+                option.value = stanza;
+                option.innerHTML = stanza;
+                select.appendChild(option);
+                option = document.createElement('option');
+                option.value = arma;
+                option.innerHTML = arma;
+                select.appendChild(option);
+                appunti.elemento_reazioni_giocatori.appendChild(select);
+                appunti.init_mostra(giocatore);
+            }
+        }
+    },
+
+    // Inizializzazione mostra
+    init_mostra: function(giocatore) {
+        var elemento_mostra = document.querySelector('#' + giocatore + '_mostra');
+        var elemento_mostra_carta = document.querySelector('#' + giocatore + '_mostra_carta');
+        elemento_mostra.addEventListener('click', function() {
+            if (elemento_mostra.value == 'mostra') {
+                elemento.elemento_mostra_carta.classList.remove('w3-hide');
+            } else elemento.elemento_mostra_carta.classList.add('w3-hide');
+        });
+    },
+
+    // Inizializzazione reazioni
+    init_reazioni: function() {
+        appunti.elemento_conferma_reazioni.addEventListener('click', function() {
+            var giocatore = appunti.elemento_giocatore.value;
+            var sospettato = appunti.elemento_sospettato.value;
+            var stanza = appunti.elemento_stanza.value;
+            var arma = appunti.elemento_arma.value;
+            for (var i = 0; i < appunti.giocatori.length; i++) {
+                var giocatore_corrente = appunti.giocatori[i];
+                if (giocatore_corrente != giocatore) {
+                    var elemento_mostra = document.querySelector('#' + giocatore_corrente + '_mostra');
+                    if (elemento_mostra.value == 'mostra') {
+                        var elemento_mostra_carta = document.querySelector('#' + giocatore_corrente + '_mostra_carta');
+                        if (elemento_mostra_carta.value != '') {
+                            appunti.possiede(giocatore_corrente, elemento_mostra_carta.value);
+                        }
+                    } else if (elemento_mostra.value == 'non_mostra') {
+                        appunti.non_possiede(giocatore_corrente, sospettato);
+                        appunti.non_possiede(giocatore_corrente, stanza);
+                        appunti.non_possiede(giocatore_corrente, arma);
+                    }
+                }
+            }
+            appunti.completa_colonne();
+            appunti.aggiorna_appunti();
+            appunti.chiudi_modal();
+        });
     }
 
 };
