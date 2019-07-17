@@ -10,9 +10,33 @@
                     "minimo": 3,
                     "massimo": 6
                 },
-                "sospettati": [],
-                "stanze": [],
-                "armi": []
+                "sospettati": [
+                    "Kassandra Scarlet",
+                    "Victor Plum",
+                    "Jack Mustard",
+                    "Jacob Green",
+                    "Diane White",
+                    "Eleanor Peacock"
+                ],
+                "stanze": [
+                    "Cucina",
+                    "Sala da pranzo",
+                    "Veranda",
+                    "Sala da ballo",
+                    "Anticamera",
+                    "Serra",
+                    "Sala da biliardo",
+                    "Biblioteca",
+                    "Studio"
+                ],
+                "armi": [
+                    "Corda",
+                    "Tubo di piombo",
+                    "Pugnale",
+                    "Chiave inglese",
+                    "Candeliere",
+                    "Rivoltella"
+                ]
             }, {
                 "nome": "Seconda edizione",
                 "valore": "seconda_edizione",
@@ -20,9 +44,36 @@
                     "minimo": 2,
                     "massimo": 6
                 },
-                "sospettati": [],
-                "stanze": [],
-                "armi": []
+                "sospettati": [
+                    "Kassandra Scarlet",
+                    "Victor Plum",
+                    "Jack Mustard",
+                    "Jacob Green",
+                    "Dottoressa Orchid",
+                    "Eleanor Peacock"
+                ],
+                "stanze": [
+                    "Cucina",
+                    "Sala da pranzo",
+                    "Depandance",
+                    "Terrazza",
+                    "Ingresso",
+                    "Spa",
+                    "Sala home-theatre",
+                    "Soggiorno",
+                    "Osservatorio"
+                ],
+                "armi": [
+                    "Coltello",
+                    "Candeliere",
+                    "Pistola",
+                    "Veleno",
+                    "Trofeo",
+                    "Corda",
+                    "Mazza da baseball",
+                    "Ascia",
+                    "Manubrio"
+                ]
             }
         ]
     }, {

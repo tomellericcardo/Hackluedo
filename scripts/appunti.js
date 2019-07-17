@@ -348,6 +348,7 @@ var appunti = {
             var arma = appunti.elemento_arma.value;
             if (giocatore != '' && giocatore != 'Tavolo' && sospettato != '' && stanza != '' && arma != '') {
                 appunti.render_reazioni(giocatore, sospettato, stanza, arma);
+                appunti.init_mostra();
                 appunti.elemento_certezza.style.display = 'none';
                 appunti.elemento_ipotesi.style.display = 'none';
                 appunti.elemento_reazioni.style.display = 'block';
@@ -372,6 +373,7 @@ var appunti = {
                 select.id = giocatore_corrente + '_mostra';
                 select.name = giocatore_corrente + '_mostra';
                 select.classList.add('w3-select');
+                select.classList.add('mostra_carta');
                 var option = document.createElement('option');
                 option.value = '';
                 option.innerHTML = 'Seleziona azione';
@@ -406,20 +408,19 @@ var appunti = {
                 option.innerHTML = arma;
                 select.appendChild(option);
                 appunti.elemento_reazioni_giocatori.appendChild(select);
-                appunti.elemento_reazioni_giocatori.innerHTML += '<br>';
-                appunti.init_mostra(giocatore_corrente);
             }
         }
     },
 
     // Inizializzazione mostra
-    init_mostra: function(giocatore) {
-        var elemento_mostra = document.querySelector('#' + giocatore + '_mostra');
-        var elemento_mostra_carta = document.querySelector('#' + giocatore + '_mostra_carta');
-        elemento_mostra.addEventListener('change', function() {
-            if (elemento_mostra.value == 'mostra') {
-                elemento_mostra_carta.classList.remove('w3-hide');
-            } else elemento_mostra_carta.classList.add('w3-hide');
+    init_mostra: function() {
+        document.querySelectorAll('.mostra_carta').forEach(function(elemento_mostra) {
+            elemento_mostra.addEventListener('change', function(event) {
+                let elemento_mostra_carta = document.querySelector('#' + event.target.id + '_carta');
+                if (elemento_mostra.value == 'mostra') {
+                    elemento_mostra_carta.classList.remove('w3-hide');
+                } else elemento_mostra_carta.classList.add('w3-hide');
+            });
         });
     },
 
