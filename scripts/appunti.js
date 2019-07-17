@@ -431,7 +431,7 @@ var appunti = {
             var sospettato = appunti.elemento_sospettato.value;
             var stanza = appunti.elemento_stanza.value;
             var arma = appunti.elemento_arma.value;
-            for (var i = 0; i < appunti.giocatori.length; i++) {
+            for (var i = 1; i < appunti.giocatori.length; i++) {
                 var giocatore_corrente = appunti.giocatori[i];
                 if (giocatore_corrente != giocatore && giocatore_corrente != 'Tavolo') {
                     var elemento_mostra = document.querySelector('#' + giocatore_corrente + '_mostra');
