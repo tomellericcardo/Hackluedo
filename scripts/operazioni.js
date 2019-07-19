@@ -250,4 +250,4 @@ var operazioni = {
 
 
 // Pagina pronta
-document.addEventListener('DOMContentLoaded', operazioni.init});
+document.addEventListener('DOMContentLoaded', operazioni.init);
