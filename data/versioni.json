@@ -6,10 +6,6 @@
             {
                 "nome": "Prima edizione",
                 "valore": "prima_edizione",
-                "giocatori": {
-                    "minimo": 3,
-                    "massimo": 6
-                },
                 "sospettati": [
                     "Kassandra Scarlet",
                     "Victor Plum",
@@ -40,10 +36,6 @@
             }, {
                 "nome": "Seconda edizione",
                 "valore": "seconda_edizione",
-                "giocatori": {
-                    "minimo": 2,
-                    "massimo": 6
-                },
                 "sospettati": [
                     "Kassandra Scarlet",
                     "Victor Plum",
@@ -83,10 +75,6 @@
             {
                 "nome": "Fortezza Rossa",
                 "valore": "fortezza_rossa",
-                "giocatori": {
-                    "minimo": 2,
-                    "massimo": 6
-                },
                 "sospettati": [
                     "Cersei Lannister",
                     "Tyrion Lannister",
@@ -119,10 +107,6 @@
             }, {
                 "nome": "Meereen",
                 "valore": "meereen",
-                "giocatori": {
-                    "minimo": 2,
-                    "massimo": 6
-                },
                 "sospettati": [
                     "Daenerys Targaryen",
                     "Hizdar zo Loraq",

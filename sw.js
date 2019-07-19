@@ -1,16 +1,17 @@
-var CACHE = 'hackluedo_v1';
+var CACHE = 'hackluedo_v2';
 var TOCACHE = [
     '/',
     '/setup',
     '/appunti',
     '/data/manifest.json',
     '/data/versioni.json',
-    '/styles/main.css',
     '/images/icona192.png',
     '/images/icona512.png',
-    '/scripts/setup.js',
     '/scripts/partita.js',
+    '/scripts/setup.js',
     '/scripts/appunti.js',
+    '/scripts/operazioni.js',
+    '/styles/main.css',
     '/styles/partita.css',
     '/styles/appunti.css'
 ];

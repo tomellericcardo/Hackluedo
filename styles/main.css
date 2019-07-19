@@ -48,6 +48,15 @@ button {
     left: 0;
 }
 
+.menu:focus, .menu:hover {
+    background-color: var(--primary-color)!important;
+    color: var(--text-color)!important;
+}
+
+.menu i {
+    vertical-align: middle;
+}
+
 .fab {
     position: fixed;
     right: 20px;
