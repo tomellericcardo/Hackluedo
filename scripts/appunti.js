@@ -18,14 +18,15 @@ var appunti = {
     memorizza_elementi: function() {
         appunti.elemento_tabella = document.querySelector('table');
         appunti.elemento_aggiungi = document.querySelector('#aggiungi');
-        appunti.elemento_chiudi = document.querySelector('#chiudi');
-        appunti.elemento_modal = document.querySelector('.w3-modal');
-        appunti.elemento_tipo = document.querySelector('#tipo');
-        appunti.elemento_giocatore = document.querySelector('#giocatore');
-        appunti.elemento_certezza = document.querySelector('#certezza');
+        appunti.elemento_modal_certezza = document.querySelector('#modal_certezza');
+        appunti.elemento_chiudi_certezza = document.querySelector('#chiudi_certezza');
+        appunti.elemento_giocatore_certezza = document.querySelector('#giocatore_certezza');
         appunti.elemento_possiede = document.querySelector('#possiede');
         appunti.elemento_carta = document.querySelector('#carta');
         appunti.elemento_conferma_certezza = document.querySelector('#conferma_certezza');
+        appunti.elemento_modal_ipotesi = document.querySelector('#modal_ipotesi');
+        appunti.elemento_chiudi_ipotesi = document.querySelector('#chiudi_ipotesi');
+        appunti.elemento_giocatore_ipotesi = document.querySelector('#giocatore_ipotesi');
         appunti.elemento_ipotesi = document.querySelector('#ipotesi');
         appunti.elemento_sospettato = document.querySelector('#sospettato');
         appunti.elemento_stanza = document.querySelector('#stanza');
@@ -34,6 +35,10 @@ var appunti = {
         appunti.elemento_reazioni = document.querySelector('#reazioni');
         appunti.elemento_reazioni_giocatori = document.querySelector('#reazioni_giocatori');
         appunti.elemento_conferma_reazioni = document.querySelector('#conferma_reazioni');
+        appunti.elemento_annulla = document.querySelector('#annulla');
+        appunti.elemento_modal_annulla = document.querySelector('#modal_annulla');
+        appunti.elemento_chiudi_annulla = document.querySelector('#chiudi_annulla');
+        appunti.elemento_conferma_annulla = document.querySelector('#conferma_annulla');
     },
 
     // Lettura ambientazione
@@ -125,50 +130,84 @@ var appunti = {
     // Inizializzazione cella
     init_cella: function(td, giocatore, carta) {
         td.addEventListener('click', function() {
-            appunti.elemento_giocatore.value = giocatore;
+            appunti.elemento_giocatore_certezza.value = giocatore;
             appunti.elemento_carta.value = carta;
-            appunti.elemento_modal.style.display = 'block';
+            appunti.elemento_modal_certezza.style.display = 'block';
         });
     },
 
     // Renderizzazione campi
     render_campi: function() {
+        appunti.render_giocatori_certezza();
+        appunti.render_giocatori_ipotesi();
+        appunti.render_sospettati();
+        appunti.render_stanze();
+        appunti.render_armi();
+    },
+
+    // Renderizzazione giocatori certezza
+    render_giocatori_certezza: function() {
         for (var i = 0; i < appunti.giocatori.length; i++) {
             var giocatore = appunti.giocatori[i];
             var option = document.createElement('option');
             option.value = giocatore;
             option.innerHTML = giocatore;
-            appunti.elemento_giocatore.appendChild(option);
+            appunti.elemento_giocatore_certezza.appendChild(option);
         }
-        for (i = 0; i < appunti.sospettati.length; i++) {
+    },
+
+    // Renderizzazione giocatori ipotesi
+    render_giocatori_ipotesi: function() {
+        for (var i = 0; i < appunti.giocatori.length; i++) {
+            var giocatore = appunti.giocatori[i];
+            if (giocatore != 'Tavolo') {
+                var option = document.createElement('option');
+                option.value = giocatore;
+                option.innerHTML = giocatore;
+                appunti.elemento_giocatore_ipotesi.appendChild(option);
+            }
+        }
+    },
+
+    // Renderizzazione sospettati
+    render_sospettati: function() {
+        for (var i = 0; i < appunti.sospettati.length; i++) {
             var sospettato = appunti.sospettati[i];
             var option_carta = document.createElement('option');
             option_carta.value = sospettato;
             option_carta.innerHTML = sospettato;
             appunti.elemento_carta.appendChild(option_carta);
-            option = document.createElement('option');
+            var option = document.createElement('option');
             option.value = sospettato;
             option.innerHTML = sospettato;
             appunti.elemento_sospettato.appendChild(option);
         }
-        for (i = 0; i < appunti.stanze.length; i++) {
+    },
+
+    // Renderizzazione stanze
+    render_stanze: function() {
+        for (var i = 0; i < appunti.stanze.length; i++) {
             var stanza = appunti.stanze[i];
-            option_carta = document.createElement('option');
+            var option_carta = document.createElement('option');
             option_carta.value = stanza;
             option_carta.innerHTML = stanza;
             appunti.elemento_carta.appendChild(option_carta);
-            option = document.createElement('option');
+            var option = document.createElement('option');
             option.value = stanza;
             option.innerHTML = stanza;
             appunti.elemento_stanza.appendChild(option);
         }
-        for (i = 0; i < appunti.armi.length; i++) {
+    },
+
+    // Renderizzazione armi
+    render_armi: function() {
+        for (var i = 0; i < appunti.armi.length; i++) {
             var arma = appunti.armi[i];
-            option_carta = document.createElement('option');
+            var option_carta = document.createElement('option');
             option_carta.value = arma;
             option_carta.innerHTML = arma;
             appunti.elemento_carta.appendChild(option_carta);
-            option = document.createElement('option');
+            var option = document.createElement('option');
             option.value = arma;
             option.innerHTML = arma;
             appunti.elemento_arma.appendChild(option);
@@ -177,34 +216,36 @@ var appunti = {
 
     // Inizializzazione partita
     init_partita: function() {
-        appunti.partita = JSON.parse(localStorage.getItem('info'));
+        appunti.partita = JSON.parse(localStorage.getItem('appunti'));
         if (!appunti.partita) {
-            appunti.partita = {};
+            appunti.partita = {
+                operazioni: [],
+                possessi: {}
+            };
             for (var i = 0; i < appunti.giocatori.length; i++) {
                 var giocatore = appunti.giocatori[i];
-                appunti.partita[giocatore] = {
+                appunti.partita.possessi[giocatore] = {
                     possiede: [],
                     non_possiede: []
                 };
             }
-            localStorage.setItem('info', JSON.stringify(appunti.partita));
-        }
-        else appunti.aggiorna_appunti();
+            localStorage.setItem('appunti', JSON.stringify(appunti.partita));
+        } else appunti.aggiorna_appunti();
     },
 
     // Aggiornamento appunti
     aggiorna_appunti: function() {
         var celle = document.querySelectorAll('.cella i');
-        for (var giocatore in appunti.partita) {
-            for (var i = 0; i < appunti.partita[giocatore].possiede.length; i++) {
-                var carta = appunti.partita[giocatore].possiede[i];
+        for (var giocatore in appunti.partita.possessi) {
+            for (var i = 0; i < appunti.partita.possessi[giocatore].possiede.length; i++) {
+                var carta = appunti.partita.possessi[giocatore].possiede[i];
                 var indice = appunti.carte.indexOf(carta) * appunti.giocatori.length;
                 indice += appunti.giocatori.indexOf(giocatore);
                 celle[indice].innerHTML = appunti.icone.possiede;
                 celle[indice].parentElement.parentElement.classList.add('esclusa');
             }
-            for (var i = 0; i < appunti.partita[giocatore].non_possiede.length; i++) {
-                var carta = appunti.partita[giocatore].non_possiede[i];
+            for (var i = 0; i < appunti.partita.possessi[giocatore].non_possiede.length; i++) {
+                var carta = appunti.partita.possessi[giocatore].non_possiede[i];
                 var indice = appunti.carte.indexOf(carta) * appunti.giocatori.length;
                 indice += appunti.giocatori.indexOf(giocatore);
                 celle[indice].innerHTML = appunti.icone.non_possiede;
@@ -218,5 +259,9 @@ var appunti = {
 // Pagina pronta
 document.addEventListener('DOMContentLoaded', function() {
     if (!JSON.parse(localStorage.getItem('partita'))) location.href = '/';
-    else appunti.init();
+    else {
+        appunti.init();
+        operazioni.init();
+        annulla.init();
+    }
 });

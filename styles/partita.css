@@ -2,3 +2,9 @@
 #nuova, #continua {
     cursor: pointer;
 }
+
+#nuova i, #continua i {
+    margin-top: 5vh;
+    color: var(--colore-campi);
+    font-size: 7em;
+}

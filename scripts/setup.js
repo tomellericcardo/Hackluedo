@@ -7,6 +7,7 @@ var setup = {
         setup.render_versioni();
         setup.init_versione();
         setup.init_giocatori();
+        setup.init_nomi();
         setup.init_conferma();
     },
 
@@ -82,6 +83,15 @@ var setup = {
         });
     },
 
+    // Inizializzazione nomi
+    init_nomi: function() {
+        document.querySelectorAll('.nome').forEach(function(element) {
+            element.addEventListener('change', function() {
+                element.value = element.value.trim().substring(0, 4).toUpperCase();
+            });
+        });
+    },
+
     // Inizializzazione conferma
     init_conferma: function() {
         setup.elemento_conferma.addEventListener('click', function() {
@@ -98,7 +108,6 @@ var setup = {
         var i = 0;
         while (validi && i < setup.numero) {
             var nome = document.querySelector('#nome_' + i).value;
-            nome = nome.trim().substring(0, 3).toUpperCase();
             if (nome == '') validi = false;
             else if (nomi.includes(nome)) validi = false;
             else nomi.push(nome);

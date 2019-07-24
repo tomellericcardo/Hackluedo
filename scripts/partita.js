@@ -62,7 +62,7 @@ var partita = {
     init_conferma: function() {
         partita.elemento_conferma.addEventListener('click', function() {
             localStorage.setItem('partita', 'false');
-            localStorage.removeItem('info');
+            localStorage.removeItem('appunti');
             location.href = '/setup';
         });
     }

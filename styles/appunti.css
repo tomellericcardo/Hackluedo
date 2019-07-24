@@ -1,3 +1,9 @@
+/* ANNULLA */
+#annulla {
+    left: initial;
+    right: 0;
+}
+
 /* APPUNTI */
 #appunti {
     overflow-x: scroll;
@@ -44,6 +50,6 @@ th {
     margin-bottom: 40px;
 }
 
-#ipotesi, #reazioni {
+#reazioni {
     display: none;
 }
